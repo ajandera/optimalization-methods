@@ -1,0 +1,6 @@
+parameters:
+
+database:
+    dsn: 'mysql:host=db;dbname=om'
+    user: root
+    password: root

@@ -1,0 +1,25 @@
+version: '2'
+services:
+    php:
+        container_name: om_server
+        build: ./docker
+        volumes:
+          - ".:/var/www/html"
+        ports:
+            - 9070:80
+        environment:
+          HTTPD__DocumentRoot: '/var/www/html/www/'
+          HTTPD__ServerAdmin: 'ales.jandera@gmail.com'
+          HTTPD_a2enmod:  'rewrite status expires'
+    db:
+      container_name: om_database
+      image: mysql:5.7
+      volumes:
+          - "./docker/.data/db:/var/lib/mysql"
+      environment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: shopycrm
+          MYSQL_USER: ajandera
+          MYSQL_PASSWORD: ajandera
+      ports:
+        - "3306:51230"
