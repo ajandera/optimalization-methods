@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
-namespace App\Presenters;
+namespace App;
 
 use App\Model\UsersManager;
 use Nette;
@@ -13,12 +11,12 @@ use Nette\ComponentModel\IComponent;
  * Class SignPresenter
  * @package App\Presenters
  */
-final class SignPresenter extends Nette\Application\UI\Presenter
+class SignPresenter extends Nette\Application\UI\Presenter
 {
     /** @var UsersManager @inject */
     public $userManager;
 
-    public function actionDefault(): void
+    public function actionDefault()
     {
 
     }
@@ -26,7 +24,7 @@ final class SignPresenter extends Nette\Application\UI\Presenter
     /**
      * @return IComponent|null
      */
-    protected function createComponentSignInForm(): ?IComponent
+    protected function createComponentSignInForm()
     {
         $form = new Form();
         $form->addText('email', '')
@@ -47,7 +45,7 @@ final class SignPresenter extends Nette\Application\UI\Presenter
      * @throws Nette\Application\AbortException
      * @throws Nette\Security\AuthenticationException
      */
-    public function signInFormSucceeded(Form $form, \stdClass $values): void
+    public function signInFormSucceeded(Form $form, \stdClass $values)
     {
         $values = $form->getValues();
         $this->getUser()->login($values->email, $values->password);
@@ -67,7 +65,7 @@ final class SignPresenter extends Nette\Application\UI\Presenter
     /**
      * @return IComponent|null
      */
-    protected function createComponentSignUpForm(): ?IComponent
+    protected function createComponentSignUpForm()
     {
         $form = new Form();
         $form->addEmail('email', '')
@@ -92,7 +90,7 @@ final class SignPresenter extends Nette\Application\UI\Presenter
      * @param \stdClass $values
      * @throws Nette\Application\AbortException
      */
-    public function signUpFormSucceeded(Form $form, \stdClass $values): void
+    public function signUpFormSucceeded(Form $form, \stdClass $values)
     {
         $values = $form->getValues();
         $this->userManager->insert($values->email, $values->password);

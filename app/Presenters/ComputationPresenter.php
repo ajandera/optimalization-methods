@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
-namespace App\Presenters;
+namespace App;
 
 use Nette;
 
@@ -10,9 +8,9 @@ use Nette;
  * Class ComputationPresenter
  * @package App\Presenters
  */
-final class ComputationPresenter extends Nette\Application\UI\Presenter
+class ComputationPresenter extends BasePresenter
 {
-    public function startup(): void
+    public function startup()
     {
         parent::startup();
         if (!$this->getUser()->isLoggedIn()) {
@@ -20,7 +18,7 @@ final class ComputationPresenter extends Nette\Application\UI\Presenter
         }
     }
 
-    public function renderDefault(): void
+    public function renderDefault()
     {
 
     }

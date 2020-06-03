@@ -1,21 +1,50 @@
 <?php
 
-declare(strict_types=1);
+namespace App;
 
-namespace App\Router;
-
-use Nette;
+use Nette\Application\IRouter;
 use Nette\Application\Routers\RouteList;
+use Nette\Application\Routers\Route;
 
-
-final class RouterFactory
+/**
+ * Router factory.
+ */
+class RouterFactory
 {
-	use Nette\StaticClass;
 
-	public static function createRouter(): RouteList
-	{
-		$router = new RouteList;
-		$router->addRoute('<presenter>/<action>[/<id>]', 'Homepage:default');
-		return $router;
-	}
+    /**
+     * @return IRouter
+     */
+    public function createRouter()
+    {
+        $router = new RouteList();
+
+        $router[] = new Route('index.php', 'Homepage:default', Route::ONE_WAY);
+
+        $router[] = new Route('<presenter>[/<action>]', [
+            'presenter' => [
+                Route::VALUE => 'Homepage',
+                Route::FILTER_TABLE => [
+                    'vypocty' => 'Computation',
+                    'chyba' => 'error',
+                    'modelovy-priklad' => 'Example',
+                    'prihlaseni' => 'Sign',
+                    'teoria' => 'Theory'
+                ],
+                Route::FILTER_STRICT => true,
+            ],
+            'action' => [
+                Route::VALUE => 'default',
+                Route::FILTER_TABLE => [
+                    'stranka-nenalezena' => '404',
+                    'registrace' => 'register',
+                    'potvrzeni' => 'confirm',
+                    'odhlasenie' => 'logout'
+                ],
+                Route::FILTER_STRICT => true,
+            ],
+        ]);
+
+        return $router;
+    }
 }

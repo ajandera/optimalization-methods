@@ -1,8 +1,8 @@
 <?php
 
-declare(strict_types=1);
 
-namespace App\Presenters;
+
+namespace App;
 
 use Nette;
 
@@ -10,9 +10,9 @@ use Nette;
  * Class ExamplePresenter
  * @package App\Presenters
  */
-final class ExamplePresenter extends Nette\Application\UI\Presenter
+class ExamplePresenter extends Nette\Application\UI\Presenter
 {
-    public function startup(): void
+    public function startup()
     {
         parent::startup();
         if (!$this->getUser()->isLoggedIn()) {
@@ -20,7 +20,7 @@ final class ExamplePresenter extends Nette\Application\UI\Presenter
         }
     }
 
-    public function renderDefault(): void
+    public function renderDefault()
     {
 
     }

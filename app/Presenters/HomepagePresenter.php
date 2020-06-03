@@ -1,19 +1,16 @@
 <?php
 
-declare(strict_types=1);
-
-namespace App\Presenters;
-
-use Nette;
+namespace App;
 
 /**
  * Class HomepagePresenter
  * @package App\Presenters
  */
-final class HomepagePresenter extends Nette\Application\UI\Presenter
+
+class HomepagePresenter extends BasePresenter
 {
 
-    public function startup(): void
+    public function startup()
     {
         parent::startup();
         if (!$this->getUser()->isLoggedIn()) {
@@ -21,7 +18,7 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
         }
     }
 
-    public function renderDefault(): void
+    public function renderDefault()
     {
 
     }
