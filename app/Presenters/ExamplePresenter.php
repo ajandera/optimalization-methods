@@ -10,7 +10,7 @@ use Nette;
  * Class ExamplePresenter
  * @package App\Presenters
  */
-class ExamplePresenter extends Nette\Application\UI\Presenter
+class ExamplePresenter extends BasePresenter
 {
     public function startup()
     {

@@ -18,4 +18,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     {
         parent::startup();
     }
+
+    /**
+     * @throws Nette\Application\AbortException
+     */
+    public function handleLogout()
+    {
+        $this->getUser()->logout(true);
+        $this->redirect('Sign:');
+    }
 }
