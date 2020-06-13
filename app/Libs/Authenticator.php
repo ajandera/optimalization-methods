@@ -37,7 +37,7 @@ class Authenticator implements IAuthenticator
             ->where('email', $email)->fetch();
 
         if (!$row) {
-            throw new Nette\Security\AuthenticationException('EEmail nie je registrovaný.');
+            throw new Nette\Security\AuthenticationException('Email nie je registrovaný.');
         }
 
         if (!$this->passwords->verify($password, $row->password)) {

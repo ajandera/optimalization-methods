@@ -48,9 +48,15 @@ class SignPresenter extends Nette\Application\UI\Presenter
     public function signInFormSucceeded(Form $form, \stdClass $values)
     {
         $values = $form->getValues();
-        $this->getUser()->login($values->email, $values->password);
-        $this->getUser()->setExpiration("1 day");
-        $this->redirect('Homepage:');
+        try {
+            $this->getUser()->login($values->email, $values->password);
+            $this->getUser()->setExpiration("1 day");
+            $this->redirect('Homepage:');
+        } catch (Nette\Security\AuthenticationException $e) {
+            $this->flashMessage($e->getMessage(), "danger");
+            $this->redirect('this');
+        }
+
     }
 
     /**
@@ -72,15 +78,15 @@ class SignPresenter extends Nette\Application\UI\Presenter
             ->setHtmlAttribute('placeholder', 'Email')
             ->setRequired(true);
         $form->addPassword('password', '')
-            ->setHtmlAttribute('placeholder', 'Password')
+            ->setHtmlAttribute('placeholder', 'Heslo')
             ->setRequired(true)
-            ->addRule(Form::MIN_LENGTH, 'Minimal password length is %d.', 8);
+            ->addRule(Form::MIN_LENGTH, 'Minimálna dľžka hesla je %d.', 8);
         $form->addPassword('check', '')
-            ->setHtmlAttribute('placeholder', 'Password Again')
+            ->setHtmlAttribute('placeholder', 'Heslo pre kontrolu')
             ->setRequired(true)
-            ->addRule(Form::EQUAL, 'Password don\'t match', $form['password']);
-        $form->addProtection('Error time limit fail.');
-        $form->addSubmit('submit', 'Sign Up');
+            ->addRule(Form::EQUAL, 'Hesla nesúhlasí', $form['password']);
+        $form->addProtection('Vypršal časový limit.');
+        $form->addSubmit('submit', 'Regitrovať');
         $form->onSuccess[] = [$this, 'signUpFormSucceeded'];
         return $form;
     }

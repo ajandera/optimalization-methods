@@ -4,59 +4,91 @@
 <head>
 
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="FBERG Objektové programovani">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 
-    <title>Optimalizačné metódy</title>
-    <!-- Bootstrap core templates-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Technologie spracovania surovin</title>
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{$basePath}assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{$basePath}assets/css/font-awesome.css">
+
+    <link rel="stylesheet" href="{$basePath}assets/css/templatemo-training-studio.css">
     {block #head}{/block}
-
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Optimalizačné metódy</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" n:href="Homepage:">Domov <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" n:href="Theory:">Teória</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" n:href="Example:">Príklad</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" n:href="Computation:">Kalkulačka</a>
-                </li>
-                <li class="nav-item" n:if="$user->isLoggedIn()">
-                    <a class="nav-link" n:href="Sign:logout">Odhlásit</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div n:foreach="$flashes as $flash" n:class="alert, 'alert-' . $flash->type">{$flash->message}</div>
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">Technologie spracovania surovin</em></a>
+                    <!-- ***** Logo End ***** -->
+                </nav>
             </div>
         </div>
     </div>
-    {block #content}{/block}
-    <!-- Bootstrap core JavaScript-->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    {block #script}{/block}
-</body>
+</header>
+<!-- ***** Header Area End ***** -->
 
+<!-- ***** Main Banner Area Start ***** -->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div n:foreach="$flashes as $flash" n:class="alert, 'alert-' . $flash->type">{$flash->message}</div>
+        </div>
+    </div>
+</div>
+{block #content}{/block}
+<!-- ***** Main Banner Area End ***** -->
+
+<!-- ***** Footer Start ***** -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <p n:if="$user->isLoggedIn()">Prihlásený ako: {$user->getIdentity()->data['email']} | <a n:href="logout!">Odhlásenie</a></p>
+                <p>Copyright &copy; 2020 Objektové programovanie
+
+                    - Designed by <a rel="nofollow" href="https://templatemo.com" class="tm-text-link" target="_parent">TemplateMo</a></p>
+
+                <!-- You shall support us a little via PayPal to info@templatemo.com -->
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="{$basePath}assets/js/jquery-2.1.0.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="{$basePath}assets/js/popper.js"></script>
+<script src="{$basePath}assets/js/bootstrap.min.js"></script>
+
+<!-- Plugins -->
+<script src="{$basePath}assets/js/scrollreveal.min.js"></script>
+<script src="{$basePath}assets/js/waypoints.min.js"></script>
+<script src="{$basePath}assets/js/jquery.counterup.min.js"></script>
+<script src="{$basePath}assets/js/imgfix.min.js"></script>
+<script src="{$basePath}assets/js/mixitup.js"></script>
+<script src="{$basePath}assets/js/accordions.js"></script>
+
+<!-- Global Init -->
+<script src="{$basePath}assets/js/custom.js"></script>
+<script type="text/javascript">
+    function openTab(th)
+    {
+        window.open(th.name,'_blank');
+    }
+</script>
+{block #script}{/block}
+</body>
 </html>
