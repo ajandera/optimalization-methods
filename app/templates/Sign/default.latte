@@ -9,6 +9,16 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12" style="margin-top: 200px">
+                            <br>
+                            <p>Mobilná aplikácia je vytvorená na predmet Technológie spracovania surovín. Obsahuje prednášky, cvičenia, kalkulačku na výpočet príkladov. Prístup k podkladom a kalkulačke majú len študenti Technickej univerzity v Košiciach, ktorí sa najprv zaregistrujú a potom prihlásia pomocou študentského e-mailu v tvare meno.priezvisko@student.tuke.sk.</p>
+                            <br>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div n:foreach="$flashes as $flash" n:class="alert, 'alert-' . $flash->type">{$flash->message}</div>
+                                    </div>
+                                </div>
+                            </div>
                             <h3>Prihlásenie</h3>
                             {form signInForm}
                                 <div class="form-group">
@@ -49,6 +59,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>
