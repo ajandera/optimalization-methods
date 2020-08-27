@@ -21,6 +21,9 @@
                             </div>
                             <h3>Prihlásenie</h3>
                             {form signInForm}
+                                <ul class="errors" n:if="$form->hasErrors()">
+                                    <li n:foreach="$form->errors as $error">{$error}</li>
+                                </ul>
                                 <div class="form-group">
                                     {label email/}
                                     {input email, class => "form-control"}
@@ -40,6 +43,9 @@
                         <div class="col-12">
                             <h3>Registrácia</h3>
                             {form signUpForm}
+                                <ul class="errors" n:if="$form->hasErrors()">
+                                    <li n:foreach="$form->errors as $error">{$error}</li>
+                                </ul>
                                 <div class="form-group">
                                     {label email/}
                                     {input email, class => "form-control"}

@@ -99,8 +99,16 @@ class SignPresenter extends Nette\Application\UI\Presenter
     public function signUpFormSucceeded(Form $form, \stdClass $values)
     {
         $values = $form->getValues();
-        $this->userManager->insert($values->email, $values->password);
-        $this->flashMessage('Registrácia bola úspešná', 'success');
+
+        $domain = 'tuke.sk';
+
+        if (strpos($values->email, $domain) !== false) {
+            $this->userManager->insert($values->email, $values->password);
+            $this->flashMessage('Registrácia bola úspešná', 'success');
+        } else {
+            $this->flashMessage('Iba školský email z tuke.sk je povolený.', 'danger');
+        }
+
         $this->redirect('this');
     }
 }
